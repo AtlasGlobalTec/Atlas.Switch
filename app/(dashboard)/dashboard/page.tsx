@@ -4,11 +4,9 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { HelpPanel } from '@/components/ui/help-panel';
-import { ScriptumStatCard } from '@/components/scriptum/scriptum-stat-card';
 import { hasPermission, isOwnerLike, type Role } from '@/lib/auth/permissions';
 import useSWR from 'swr';
 import {
-  Sparkles,
   CheckSquare,
   Clock3,
   Users,
@@ -240,140 +238,101 @@ export default function DashboardPage() {
 
   return (
     <section className="flex-1 p-4 lg:p-8">
-      <div className="relative overflow-hidden rounded-[28px] border border-white/20 bg-gradient-to-br from-slate-950 via-indigo-950 to-fuchsia-900 p-6 text-white atlas-soft-shadow lg:p-8 atlas-fade-in">
-        <div className="absolute inset-0 opacity-60 [background:radial-gradient(circle_at_top,_#7c3aed,_transparent_55%)]" />
-        <div className="absolute -left-24 top-10 h-56 w-56 rounded-full bg-indigo-500/30 blur-3xl" />
-        <div className="absolute right-4 top-0 h-40 w-40 rounded-full bg-fuchsia-500/30 blur-3xl" />
-
-        <div className="relative z-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="flex flex-col gap-4">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.35em] text-indigo-200">
-              <Sparkles className="h-3.5 w-3.5" />
-              AtlasSwitch
-            </div>
-            <h1 className="text-3xl font-semibold leading-tight lg:text-4xl">
-              Bem-vindo ao seu centro de operações{' '}
-              <span className="atlas-gradient-text">moderno</span>
-            </h1>
-            <p className="max-w-xl text-sm text-indigo-100/90 lg:text-base">
-              Um painel jovem, elegante e focado em performance. Decisões mais
-              rápidas com módulos inteligentes e métricas em tempo real.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button
-                asChild
-                className="w-full rounded-full bg-white text-slate-900 shadow-md hover:bg-white/90 sm:w-auto"
-              >
-                <Link href="/dashboard/taskflow">Abrir tarefas</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="w-full rounded-full border-white/60 bg-white/10 text-white shadow-md hover:bg-white/20 sm:w-auto"
-              >
-                <Link href="/dashboard/usuarios">Gerenciar usuários</Link>
-              </Button>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <ScriptumStatCard
-              variant="indigo"
-              icon={Target}
-              title="Ritmo do time"
-              description="Execução nos últimos 30 dias"
-              value={`${ritmoPercent}%`}
-              footnote="Razão entre horas executadas e horas estimadas (Taskflow)."
-              compact
-            />
-            <ScriptumStatCard
-              variant="sky"
-              icon={CheckSquare}
-              title="Tarefas em foco"
-              description="Visão operacional atual"
-              value={taskflowVisibleTasks}
-              footnote="Total de tarefas visíveis no quadro (respeita permissões)."
-              compact
-            />
-          </div>
+      <header className="flex flex-col gap-4 border-b border-slate-200 pb-5 dark:border-slate-800 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <p className="text-xs font-semibold uppercase text-emerald-700 dark:text-emerald-300">Painel operacional</p>
+          <h1 className="mt-1 text-2xl font-semibold text-slate-950 dark:text-white">Visão do time</h1>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+            Execução, agenda e capacidade em um só lugar.
+          </p>
         </div>
-      </div>
+        <div className="flex flex-wrap gap-2">
+          {hasPermission(role, 'taskflow.view') ? (
+            <Button asChild className="gap-2 rounded-md bg-emerald-700 text-white hover:bg-emerald-800">
+              <Link href="/dashboard/taskflow">
+                <CheckSquare className="h-4 w-4" aria-hidden="true" />
+                Abrir tarefas
+              </Link>
+            </Button>
+          ) : null}
+          {hasPermission(role, 'chronos.view') ? (
+            <Button asChild variant="outline" className="gap-2 rounded-md border-slate-300 dark:border-slate-700">
+              <Link href="/dashboard/chronos">
+                <CalendarClock className="h-4 w-4" aria-hidden="true" />
+                Abrir agenda
+              </Link>
+            </Button>
+          ) : null}
+          {isOwnerLike(role) && hasPermission(role, 'users.manage') ? (
+            <Button asChild variant="outline" className="gap-2 rounded-md border-slate-300 dark:border-slate-700">
+              <Link href="/dashboard/usuarios">Acessos</Link>
+            </Button>
+          ) : null}
+        </div>
+      </header>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <Card className="atlas-surface atlas-hover xl:col-span-4">
-          <CardHeader className="gap-1 pb-2">
-            <CardTitle>Visão geral do time</CardTitle>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Leitura executiva dos principais módulos para acompanhar evolução geral.
-            </p>
-          </CardHeader>
-          <CardContent className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
-            <ScriptumStatCard
-              variant="indigo"
-              icon={CheckSquare}
-              title="Taskflow"
-              description="Fluxo de execução"
-              value={`${tasksCycleAvg} dias`}
-              footnote="Ciclo médio de entrega"
-              compact
-            />
-            <ScriptumStatCard
-              variant="sky"
-              icon={Video}
-              title="Reunify"
-              description="Coordenação de reuniões"
-              value={meetingsScheduled}
-              footnote="Reuniões agendadas"
-              compact
-            />
-            <ScriptumStatCard
-              variant="violet"
-              icon={Briefcase}
-              title="Projectus"
-              description="Carteira ativa"
-              value={activeProjects}
-              footnote="Projetos em andamento"
-              compact
-            />
-            <ScriptumStatCard
-              variant="emerald"
-              icon={CalendarClock}
-              title="Chronos"
-              description="Execução da agenda"
-              value={agendaConcluidaHoje}
-              footnote="Concluídos hoje"
-              compact
-            />
-            <ScriptumStatCard
-              variant="indigo"
-              icon={CreditCard}
-              title="BillTrak"
-              description="Saúde financeira"
-              value={
-                <span
-                  title={receitaLiquida.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  aria-label={`Receita líquida completa: ${receitaLiquida.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })}`}
-                >
-                  {receitaLiquidaCompacta}
-                </span>
-              }
-              footnote="Receita líquida"
-              compact
-            />
-            <ScriptumStatCard
-              variant="sky"
-              icon={Boxes}
-              title="ResourceHub"
-              description="Capacidade disponível"
-              value={recursosDisponiveis}
-              footnote="Recursos disponíveis"
-              compact
-            />
-          </CardContent>
-        </Card>
+      <section aria-label="Indicadores principais" className="border-y border-slate-200 py-5 dark:border-slate-800">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <div>
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Indicadores principais</h2>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Resumo dos módulos disponíveis para seu perfil.</p>
+          </div>
+          <span className="text-xs text-slate-500 dark:text-slate-400">Sem dados disponíveis aparece como —</span>
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {hasPermission(role, 'taskflow.view') ? (
+            <article className="border-l-2 border-emerald-600 pl-4 dark:border-emerald-400">
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <CheckSquare className="h-4 w-4 text-emerald-700 dark:text-emerald-300" aria-hidden="true" />
+                Tarefas visíveis
+              </div>
+              <p className="mt-2 text-2xl font-semibold tabular-nums text-slate-950 dark:text-white">
+                {Array.isArray(taskflowDashboard?.tasksByStatus) ? taskflowVisibleTasks : '—'}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Taskflow</p>
+            </article>
+          ) : null}
+          {hasPermission(role, 'reunify.view') ? (
+            <article className="border-l-2 border-sky-600 pl-4 dark:border-sky-400">
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <Video className="h-4 w-4 text-sky-700 dark:text-sky-300" aria-hidden="true" />
+                Reuniões agendadas
+              </div>
+              <p className="mt-2 text-2xl font-semibold tabular-nums text-slate-950 dark:text-white">
+                {Array.isArray(reunifyMeetings) ? meetingsScheduled : '—'}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Reunify</p>
+            </article>
+          ) : null}
+          {hasPermission(role, 'projectus.view') ? (
+            <article className="border-l-2 border-amber-600 pl-4 dark:border-amber-400">
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <Briefcase className="h-4 w-4 text-amber-700 dark:text-amber-300" aria-hidden="true" />
+                Projetos ativos
+              </div>
+              <p className="mt-2 text-2xl font-semibold tabular-nums text-slate-950 dark:text-white">
+                {Array.isArray(projectusProjects) ? activeProjects : '—'}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Projectus</p>
+            </article>
+          ) : null}
+          {hasPermission(role, 'billtrak.view') ? (
+            <article className="border-l-2 border-indigo-600 pl-4 dark:border-indigo-400">
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <CreditCard className="h-4 w-4 text-indigo-700 dark:text-indigo-300" aria-hidden="true" />
+                Receita líquida
+              </div>
+              <p
+                className="mt-2 text-2xl font-semibold tabular-nums text-slate-950 dark:text-white"
+                title={billtrakMetrics ? receitaLiquida.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : undefined}
+              >
+                {billtrakMetrics ? receitaLiquidaCompacta : '—'}
+              </p>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">BillTrak</p>
+            </article>
+          ) : null}
+        </div>
+      </section>
 
         <Card className="atlas-surface atlas-hover">
           <CardHeader className="gap-1 pb-2">
@@ -584,8 +543,6 @@ export default function DashboardPage() {
             </Button>
           </CardContent>
         </Card>
-      </div>
-
       <div className="mt-6 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <Card className="atlas-surface atlas-hover">
           <CardHeader className="gap-2">
