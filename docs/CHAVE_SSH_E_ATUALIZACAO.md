@@ -25,7 +25,7 @@ Se o projeto foi clonado com HTTPS, troque para SSH para não pedir senha:
 
 ```bash
 cd ~/Projeto/AtlasGlobal/AtlasSwitch.byAtlas
-git remote set-url origin git@github.com:AtlasGlobalTec/AtlasSwitch.byAtlas.git
+git remote set-url origin git@github.com:AtlasGlobalTec/Atlas.Switch.git
 git remote -v
 ```
 
@@ -66,6 +66,6 @@ Depois, reinicie a aplicação:
 | Onde | O que fazer |
 |------|-------------|
 | **GitHub** | Settings → SSH and GPG keys → New SSH key → colar a chave |
-| **Servidor** | `git remote set-url origin git@github.com:AtlasGlobalTec/AtlasSwitch.byAtlas.git` |
+| **Servidor** | `git remote set-url origin git@github.com:AtlasGlobalTec/Atlas.Switch.git` |
 | **.env (uma vez)** | `cp .env.server.example ~/Projeto/.env.atlas-switch` e editar; o script aplica a cada atualização |
 | **Atualizar** | `./scripts/atualizar-servidor.sh` e depois `pm2 restart atlas-switch` |

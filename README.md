@@ -15,8 +15,8 @@ Atlas.Switch reúne módulos operacionais, de conteúdo e de gestão em uma plat
 Requisitos: Node.js 20 ou superior, pnpm 10 e PostgreSQL.
 
 ```bash
-git clone https://github.com/AtlasGlobalTec/AtlasSwitch.byAtlas.git
-cd AtlasSwitch.byAtlas
+git clone https://github.com/AtlasGlobalTec/Atlas.Switch.git
+cd Atlas.Switch
 pnpm install
 cp .env.example .env
 ```
