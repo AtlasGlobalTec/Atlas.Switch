@@ -24,7 +24,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBmNFm0cnPVQspwz/qRGGB4iL8rqgHYRyj8ajpCxsisr
 Se o projeto foi clonado com HTTPS, troque para SSH para não pedir senha:
 
 ```bash
-cd ~/Projeto/AtlasGlobal/AtlasSwitch.byAtlas
+cd ~/Projeto/AtlasGlobal/Atlas.Switch
 git remote set-url origin git@github.com:AtlasGlobalTec/Atlas.Switch.git
 git remote -v
 ```
@@ -38,7 +38,7 @@ A partir daí, `git pull` e `git push` usam a chave SSH.
 No servidor, crie **um único arquivo** fora do projeto. O script de atualização usa esse arquivo a cada vez; você **não mexe mais no .env** dentro da pasta do projeto.
 
 ```bash
-cd ~/Projeto/AtlasGlobal/AtlasSwitch.byAtlas
+cd ~/Projeto/AtlasGlobal/Atlas.Switch
 cp .env.server.example ~/Projeto/.env.atlas-switch
 nano ~/Projeto/.env.atlas-switch
 ```
@@ -50,7 +50,7 @@ Preencha **uma vez** (POSTGRES_URL, BASE_URL com o IP do servidor, AUTH_SECRET, 
 No servidor, para puxar as últimas alterações e rebuildar:
 
 ```bash
-cd ~/Projeto/AtlasGlobal/AtlasSwitch.byAtlas
+cd ~/Projeto/AtlasGlobal/Atlas.Switch
 chmod +x scripts/atualizar-servidor.sh
 ./scripts/atualizar-servidor.sh
 ```
