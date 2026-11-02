@@ -155,20 +155,11 @@ export default function NotepadPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Notepad Pro"
-            description="Bloco de notas do time: título, pasta, tags, status, visibilidade, texto em Markdown e vínculo opcional a um projeto do módulo Projectus (mesmo time). Liste, filtre e crie notas; não há nesta página conversão automática para tarefas nem escolha de documento do Bibliotheca."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/notepad">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Notepad Pro"
+        description="Notas do time com texto em Markdown e vínculo a projetos."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ScriptumStatCard
@@ -628,9 +619,6 @@ export default function NotepadPage() {
               <div className="flex flex-wrap gap-2 pt-1">
                 <Button asChild variant="secondary" size="sm">
                   <Link href="/dashboard/projectus">Projectus</Link>
-                </Button>
-                <Button asChild variant="secondary" size="sm">
-                  <Link href="/manual/notepad">Manual completo</Link>
                 </Button>
               </div>
             </CardContent>

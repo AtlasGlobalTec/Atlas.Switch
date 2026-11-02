@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 import {
   CalendarClock,
   CheckSquare,
@@ -16,7 +17,8 @@ import {
   Activity,
   Users,
   Plug,
-  type LucideIcon
+  type LucideIcon,
+  BookOpen
 } from "lucide-react"
 
 type ModuleHeaderProps = {
@@ -38,6 +40,24 @@ export function ModuleHeader({
   showIcon = true
 }: ModuleHeaderProps) {
   const key = title.toLowerCase()
+  const manualSection =
+    key.includes("taskflow") ? "taskflow" :
+    key.includes("chronos") ? "chronos" :
+    key.includes("reunify") ? "reunify" :
+    key.includes("projectus") ? "projectus" :
+    key.includes("resourcehub") ? "resourcehub" :
+    key.includes("billtrak") ? "billtrak" :
+    key.includes("bibliotheca") ? "bibliotheca" :
+    key.includes("notepad") ? "notepad" :
+    key.includes("scriptum") ? "scriptum" :
+    key.includes("integrações") ? "control-integrations" :
+    key.includes("control center") || key.includes("controle") ? "control-center" :
+    key.includes("segurança") || key.includes("seguranca") ? "security" :
+    key.includes("usuários") || key.includes("usuarios") ? "usuarios" :
+    key.includes("atividade") ? "activity" :
+    key.includes("configurações") || key.includes("configuracoes") ? "general" :
+    key.includes("ia") ? "ai-center" :
+    null
   const visual =
     key.includes("taskflow")
       ? { icon: CheckSquare, accent: "bg-violet-500/10 text-violet-600 dark:text-violet-300" }
@@ -75,34 +95,35 @@ export function ModuleHeader({
   const Icon = (visual?.icon ?? null) as LucideIcon | null
 
   return (
-    <div className={cn("atlas-surface relative overflow-hidden p-6", className)}>
-      <div className="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-indigo-500/15 blur-3xl" />
-      <div className="absolute -left-12 bottom-0 h-28 w-28 rounded-full bg-fuchsia-500/15 blur-3xl" />
-      <div className="relative z-10 flex items-start justify-between gap-4">
-        <div className="flex flex-col gap-2">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-indigo-500/90 dark:text-indigo-300">
-          {eyebrow}
-          </div>
-          <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-50">
-            {title}
-          </h1>
-          {description ? (
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              {description}
-            </p>
-          ) : null}
-        </div>
+    <header className={cn("flex min-w-0 items-start justify-between gap-4 border-b border-slate-200 pb-4 dark:border-slate-800", className)}>
+      <div className="min-w-0">
+        <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{eyebrow}</p>
+        <h1 className="mt-1 text-2xl font-semibold text-slate-950 dark:text-white">{title}</h1>
+        {description ? (
+          <p className="mt-1 line-clamp-2 max-w-4xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+            {description}
+          </p>
+        ) : null}
+      </div>
+      <div className="flex shrink-0 items-center gap-2">
+        {manualSection ? (
+          <Link
+            href={`/manual/${manualSection}`}
+            aria-label={`Abrir documentação de ${title}`}
+            title={`Documentação de ${title}`}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-600 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            <BookOpen className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        ) : null}
         {Icon && showIcon ? (
           <div
-            className={cn(
-              "flex h-16 w-16 items-center justify-center rounded-3xl border border-white/70 bg-white/80 shadow-sm dark:border-white/10 dark:bg-white/5",
-              visual?.accent
-            )}
+            className={cn("flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200", visual?.accent)}
           >
-            <Icon className="h-8 w-8" />
+            <Icon className="h-5 w-5" aria-hidden="true" />
           </div>
         ) : null}
       </div>
-    </div>
+    </header>
   )
 }

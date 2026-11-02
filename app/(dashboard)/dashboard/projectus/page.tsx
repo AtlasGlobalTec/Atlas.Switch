@@ -23,10 +23,7 @@ import {
   ModuleSegmentedTabs,
   type ModuleSegmentedTabsItem,
 } from '@/components/ui/module-segmented-tabs';
-import {
-  ModuleWorkspaceHub,
-  moduleWorkspaceHubLinkClassName,
-} from '@/components/ui/module-workspace-hub';
+import { ModuleWorkspaceHub } from '@/components/ui/module-workspace-hub';
 import { hasPermission, isOwnerLike, type Role } from '@/lib/auth/permissions';
 import { Button } from '@/components/ui/button';
 import { EntityEditDeleteActions } from '@/components/ui/entity-edit-delete-actions';
@@ -754,24 +751,11 @@ export default function ProjectusPage() {
           aria-hidden
         />
         <div className="relative z-[1]">
-          <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-            <div className="min-w-0">
-              <ModuleHeader
-                title="Projectus"
-                description="O módulo Projectus está condicionado ao plano ativo do time. Ao habilitar o módulo, ficam disponíveis portfólio, visão e planejamento."
-                className="w-full"
-              />
-            </div>
-            <div className="flex flex-wrap items-start justify-end gap-2">
-              <Button
-                asChild
-                variant="outline"
-                className="w-full border-violet-200/80 bg-white/90 text-violet-800 shadow-sm backdrop-blur-sm hover:bg-violet-50 dark:border-violet-500/25 dark:bg-slate-900/70 dark:text-violet-200 dark:hover:bg-violet-950/40 sm:w-auto"
-              >
-                <Link href="/manual/projectus">Manual</Link>
-              </Button>
-            </div>
-          </div>
+          <ModuleHeader
+            title="Projectus"
+            description="O módulo está condicionado ao plano ativo do time."
+            className="w-full"
+          />
 
           <Card className="mt-6 border-amber-300 bg-amber-50/70 dark:border-amber-500/40 dark:bg-amber-500/10">
             <CardHeader>
@@ -802,24 +786,11 @@ export default function ProjectusPage() {
         aria-hidden
       />
       <div className="relative z-[1]">
-        <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <div className="min-w-0">
-            <ModuleHeader
-              title="Projectus"
-              description="Três modos no topo — Portfólio (lista, filtros, novo projeto), Visão (mapa do projeto, métricas, Gantt, integrações) e Planejar (edição de fases, tarefas, custos). O projeto ativo fica na barra fixa; o seletor respeita os filtros do portfólio."
-              className="w-full"
-            />
-          </div>
-          <div className="flex flex-wrap items-start justify-end gap-2">
-            <Button
-              asChild
-              variant="outline"
-              className="w-full border-violet-200/80 bg-white/90 text-violet-800 shadow-sm backdrop-blur-sm hover:bg-violet-50 dark:border-violet-500/25 dark:bg-slate-900/70 dark:text-violet-200 dark:hover:bg-violet-950/40 sm:w-auto"
-            >
-              <Link href="/manual/projectus">Manual</Link>
-            </Button>
-          </div>
-        </div>
+        <ModuleHeader
+          title="Projectus"
+          description="Portfólio, planejamento e acompanhamento de projetos."
+          className="w-full"
+        />
 
       {projetosError ? (
         <Card className="mt-4 border-amber-300 bg-amber-50/70 dark:border-amber-500/40 dark:bg-amber-500/10">
@@ -885,11 +856,6 @@ export default function ProjectusPage() {
                 Planejar: edição de fases, tarefas, marcos, riscos, dependências e custos do projeto seleccionado.
               </>
             )
-          }
-          links={
-            <Link href="/manual/projectus" className={moduleWorkspaceHubLinkClassName}>
-              Manual do Projectus
-            </Link>
           }
           tabs={
             <ModuleSegmentedTabs<MainTab>
@@ -1922,9 +1888,6 @@ export default function ProjectusPage() {
               </Button>
               <Button asChild variant="secondary" size="sm">
                 <Link href="/dashboard/notepad">Notepad</Link>
-              </Button>
-              <Button asChild variant="secondary" size="sm">
-                <Link href="/manual/projectus">Manual completo</Link>
               </Button>
             </div>
           </CardContent>

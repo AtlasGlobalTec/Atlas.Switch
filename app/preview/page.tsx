@@ -98,6 +98,7 @@ export default function DashboardPreviewPage() {
   const [period, setPeriod] = useState<DashboardPeriod>('Hoje');
   const [search, setSearch] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
 
   const visibleGroups = navigationGroups
     .map((group) => ({
@@ -130,9 +131,28 @@ export default function DashboardPreviewPage() {
           <button type="button" className="hidden h-9 items-center gap-2 rounded-md border border-slate-200 px-3 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800 sm:flex">
             Integra Brasil <ChevronDown className="h-4 w-4" aria-hidden="true" />
           </button>
-          <button type="button" className="grid h-9 w-9 place-items-center rounded-md text-slate-600 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800" aria-label="Ajuda">
-            <CircleHelp className="h-4 w-4" />
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              className="grid h-9 w-9 place-items-center rounded-md text-slate-600 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800"
+              aria-label={isHelpOpen ? 'Fechar ajuda' : 'Abrir ajuda'}
+              aria-expanded={isHelpOpen}
+              aria-controls="preview-help"
+              onClick={() => setIsHelpOpen((open) => !open)}
+            >
+              <CircleHelp className="h-4 w-4" aria-hidden="true" />
+            </button>
+            {isHelpOpen ? (
+              <div id="preview-help" role="region" aria-label="Ajuda do painel" className="absolute right-0 z-40 mt-2 w-[min(20rem,calc(100vw-2rem))] rounded-md border border-slate-200 bg-white p-4 text-sm shadow-lg dark:border-slate-700 dark:bg-slate-900">
+                <p className="font-semibold text-slate-950 dark:text-white">Ajuda deste painel</p>
+                <p className="mt-2 leading-relaxed text-slate-600 dark:text-slate-300">Acompanhe prioridades, agenda e capacidade do time. Use os filtros para ajustar o período dos indicadores.</p>
+                <Link href="/manual" className="mt-3 inline-flex min-h-9 items-center gap-2 border-t border-slate-200 pt-3 font-medium text-emerald-800 hover:underline dark:border-slate-700 dark:text-emerald-300">
+                  <CircleHelp className="h-4 w-4" aria-hidden="true" />
+                  Abrir documentação
+                </Link>
+              </div>
+            ) : null}
+          </div>
           <button type="button" className="relative grid h-9 w-9 place-items-center rounded-md text-slate-600 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 dark:text-slate-300 dark:hover:bg-slate-800" aria-label="Notificações, 3 não lidas">
             <Bell className="h-4 w-4" />
             <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose-600 ring-2 ring-white dark:ring-slate-900" />

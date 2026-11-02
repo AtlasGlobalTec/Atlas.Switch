@@ -330,20 +330,11 @@ export default function ResourceHubPage() {
   if (moduleBlocked) {
     return (
       <ModuleDashboardPageShell>
-        <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <div className="min-w-0">
-            <ModuleHeader
-              title="ResourceHub"
-              description="O módulo está contratado por plano. Quando habilitado, esta área mostra recursos, alocações e capacidade."
-              className="w-full"
-            />
-          </div>
-          <div className="flex items-start justify-end">
-            <Button asChild variant="outline" className="w-full sm:w-auto">
-              <Link href="/manual/resourcehub">Manual</Link>
-            </Button>
-          </div>
-        </div>
+        <ModuleHeader
+          title="ResourceHub"
+          description="Recursos, alocações e capacidade do time."
+          className="w-full"
+        />
         <Card className="mt-6 border-amber-300 bg-amber-50/70 dark:border-amber-500/40 dark:bg-amber-500/10">
           <CardHeader>
             <CardTitle>Módulo indisponível para este plano</CardTitle>
@@ -366,20 +357,11 @@ export default function ResourceHubPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="ResourceHub"
-            description="Cadastre recursos (pessoas, equipamentos, espaços), registre quantas horas por semana cada um pode trabalhar e distribua essas horas por projetos (Projectus) e, opcionalmente, por tarefa (Taskflow). O painel mostra se a equipe está sobrecarregada."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/resourcehub">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="ResourceHub"
+        description="Recursos, alocações e capacidade do time."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ResourceHubStatCard
@@ -923,9 +905,6 @@ export default function ResourceHubPage() {
               </Button>
               <Button asChild variant="outline" size="sm">
                 <Link href="/dashboard/billtrak">BillTrak</Link>
-              </Button>
-              <Button asChild variant="outline" size="sm">
-                <Link href="/manual/resourcehub">Manual completo</Link>
               </Button>
             </div>
           </CardContent>

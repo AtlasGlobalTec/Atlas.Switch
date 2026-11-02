@@ -94,20 +94,11 @@ export default function AiCenterPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Central de IA"
-            description="Inventário e registo de modelos (tabela ai_models). A inferência na app usa outros caminhos — ver quadro abaixo."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/ai-center">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Central de IA"
+        description="Inventário e registo de modelos (tabela ai_models). A inferência na app usa outros caminhos — ver quadro abaixo."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <div className="flex flex-col gap-4">

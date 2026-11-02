@@ -169,7 +169,7 @@ export default function UsuariosPage() {
 
   return (
     <section className="flex-1 p-4 lg:p-8">
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
+      <div className="w-full">
         <div className="min-w-0">
           <ModuleHeader
             title="Usuários"
@@ -189,11 +189,6 @@ export default function UsuariosPage() {
                 uso (membros com papel Administrador + convites em curso).
               </p>
             )}
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/usuarios">Manual</Link>
-          </Button>
         </div>
       </div>
 

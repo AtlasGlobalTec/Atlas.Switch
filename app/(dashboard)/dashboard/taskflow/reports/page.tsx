@@ -241,9 +241,6 @@ export default function TaskflowReportsPage() {
             </a>
           </Button>
           <Button asChild variant="outline" className="rounded-xl border-violet-200/80 dark:border-violet-800/50">
-            <Link href="/manual/taskflow">Manual</Link>
-          </Button>
-          <Button asChild variant="outline" className="rounded-xl border-violet-200/80 dark:border-violet-800/50">
             <Link href="/dashboard/taskflow">Voltar ao quadro</Link>
           </Button>
         </div>

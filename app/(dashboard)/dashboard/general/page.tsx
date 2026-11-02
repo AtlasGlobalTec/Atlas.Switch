@@ -134,20 +134,11 @@ export default function GeneralPage() {
 
   return (
     <section className="flex-1 p-4 lg:p-8">
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Configurações gerais"
-            description="Atualize informações principais da conta."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/general">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Configurações gerais"
+        description="Atualize as informações principais da conta."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <Card className="atlas-surface atlas-hover">

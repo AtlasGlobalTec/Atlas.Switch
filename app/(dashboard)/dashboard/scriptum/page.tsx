@@ -164,20 +164,11 @@ export default function ScriptumPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Scriptum"
-            description="Projetos longos (artigo, tese, roteiro, livro) com meta de palavras, progresso manual, capítulos por projeto e vínculos opcionais a documentos do Bibliotheca ou notas do Notepad — mesmo time."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/scriptum">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Scriptum"
+        description="Projetos longos com metas, capítulos e vínculos aos documentos do time."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ScriptumStatCard
@@ -719,9 +710,6 @@ export default function ScriptumPage() {
                 </Button>
                 <Button asChild variant="outline" size="sm">
                   <Link href="/dashboard/notepad">Notepad</Link>
-                </Button>
-                <Button asChild variant="outline" size="sm">
-                  <Link href="/manual/scriptum">Manual</Link>
                 </Button>
               </div>
             </CardContent>

@@ -136,9 +136,6 @@ export default function ControlIntegrationsPage() {
         </div>
         <div className="flex flex-wrap items-start justify-end gap-2">
           <Button asChild variant="outline" className="w-full shrink-0 rounded-xl sm:w-auto">
-            <Link href="/manual/control-integrations">Manual</Link>
-          </Button>
-          <Button asChild variant="outline" className="w-full shrink-0 rounded-xl sm:w-auto">
             <Link href="/dashboard/control-center">Voltar ao Controle</Link>
           </Button>
         </div>

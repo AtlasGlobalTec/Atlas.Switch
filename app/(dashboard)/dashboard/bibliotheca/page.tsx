@@ -196,20 +196,11 @@ export default function BibliothecaPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Bibliotheca"
-            description="Catálogo de documentos do time: metadados (título, categoria, tamanho, status, visibilidade, tags, descrição), upload opcional para pasta pública (até 15 MB) ou URL manual, e vínculo opcional a um projeto do módulo Projectus. Lista e filtros usam GET /api/bibliotheca/documents; não há nesta página escolha de tarefa Taskflow nem vínculo automático ao BillTrak."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/bibliotheca">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Bibliotheca"
+        description="Documentos e materiais do time."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ScriptumStatCard
@@ -766,9 +757,6 @@ export default function BibliothecaPage() {
               <div className="flex flex-wrap gap-2 pt-1">
                 <Button asChild variant="secondary" size="sm">
                   <Link href="/dashboard/projectus">Projectus</Link>
-                </Button>
-                <Button asChild variant="secondary" size="sm">
-                  <Link href="/manual/bibliotheca">Manual completo</Link>
                 </Button>
               </div>
             </CardContent>

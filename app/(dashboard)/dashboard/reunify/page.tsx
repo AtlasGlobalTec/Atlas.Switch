@@ -17,10 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { HelpPanel } from '@/components/ui/help-panel';
 import { useFloatingFeedback } from '@/components/ui/floating-feedback';
 import { ModuleHeader } from '@/components/ui/module-header';
-import {
-  ModuleWorkspaceHub,
-  moduleWorkspaceHubLinkClassName,
-} from '@/components/ui/module-workspace-hub';
+import { ModuleWorkspaceHub } from '@/components/ui/module-workspace-hub';
 import {
   ModuleSegmentedTabs,
   type ModuleSegmentedTabsItem,
@@ -929,24 +926,11 @@ export default function ReunifyPage() {
         aria-hidden
       />
       <div className="relative z-[1]">
-        <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <div className="min-w-0">
-            <ModuleHeader
-              title="Reunify"
-              description="Planeje e documente reuniões do time: cadastro na base AtlasSwitch, pauta, decisões, ações com prazo e captação (link ou arquivo de áudio/vídeo). Integra com Taskflow (ação vira tarefa), Chronos (bloco na agenda) e, por configuração da equipa, rascunho de ações a partir de texto e transcrição (AssemblyAI). O Projectus não liga reunião a projeto automaticamente — use-o à parte para portfólio executivo."
-              className="w-full"
-            />
-          </div>
-          <div className="flex flex-wrap items-start justify-end gap-2">
-            <Button
-              asChild
-              variant="outline"
-              className="w-full border-violet-200/80 bg-white/90 text-violet-800 shadow-sm backdrop-blur-sm hover:bg-violet-50 dark:border-violet-500/25 dark:bg-slate-900/70 dark:text-violet-200 dark:hover:bg-violet-950/40 sm:w-auto"
-            >
-              <Link href="/manual/reunify">Manual</Link>
-            </Button>
-          </div>
-        </div>
+        <ModuleHeader
+          title="Reunify"
+          description="Prepare reuniões, registre decisões e acompanhe ações."
+          className="w-full"
+        />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ScriptumStatCard
@@ -1005,11 +989,6 @@ export default function ReunifyPage() {
                 Integrações: ligações com Taskflow, Chronos e opções de processamento de reunião para o time.
               </>
             )
-          }
-          links={
-            <Link href="/manual/reunify" className={moduleWorkspaceHubLinkClassName}>
-              Manual do Reunify
-            </Link>
           }
           tabs={
             <ModuleSegmentedTabs<ReunifyMainTab>
@@ -2699,9 +2678,6 @@ export default function ReunifyPage() {
                 ficheiros conforme a política do seu time.
               </li>
             </ul>
-            <Button asChild variant="secondary" size="sm" className="mt-3">
-              <Link href="/manual/reunify#integracoes-plataformas">Manual — plataformas, APIs e LGPD</Link>
-            </Button>
           </div>
           <div className="rounded-xl border border-slate-200/80 bg-slate-50/70 p-4 text-sm text-slate-600 dark:border-slate-700/80 dark:bg-slate-900/40 dark:text-slate-300">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
@@ -2825,9 +2801,6 @@ export default function ReunifyPage() {
               portfólio no Projectus para acompanhamento executivo separado.
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Button asChild variant="secondary" size="sm">
-                <Link href="/manual/reunify#visao-geral">Manual completo (passo a passo)</Link>
-              </Button>
               <Button asChild variant="outline" size="sm">
                 <Link href="/dashboard/projectus">Abrir Projectus</Link>
               </Button>

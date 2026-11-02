@@ -11,6 +11,7 @@ import {
 import {
   ChevronDown,
   ChevronRight,
+  BookOpen,
   CheckSquare,
   Clock3,
   Copy,
@@ -2976,13 +2977,6 @@ export default function TaskflowPage() {
           >
             <Link href="/dashboard/taskflow/reports">Relatórios</Link>
           </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="w-full border-violet-200/80 bg-white/90 text-violet-800 shadow-sm backdrop-blur-sm hover:bg-violet-50 dark:border-violet-500/25 dark:bg-slate-900/70 dark:text-violet-200 dark:hover:bg-violet-950/40 sm:w-auto"
-          >
-            <Link href="/manual/taskflow">Manual</Link>
-          </Button>
         </div>
       </div>
       {projectusIntegrationError ? (
@@ -3239,14 +3233,9 @@ export default function TaskflowPage() {
           </>
         }
         links={
-          <>
-            <Link href="/manual/taskflow" className={moduleWorkspaceHubLinkClassName}>
-              Manual do Taskflow
-            </Link>
-            <Link href="/dashboard/taskflow/reports" className={moduleWorkspaceHubLinkClassName}>
-              Relatórios detalhados
-            </Link>
-          </>
+          <Link href="/dashboard/taskflow/reports" className={moduleWorkspaceHubLinkClassName}>
+            Relatórios detalhados
+          </Link>
         }
         afterLinks={
           hubTab === 'definicoes' && !canConfigureTaskflowBoard(normalizeRole(role)) ? (
@@ -5610,17 +5599,22 @@ export default function TaskflowPage() {
       <Card className="atlas-surface transition-shadow duration-200 hover:shadow-lg">
         <CardHeader className="gap-1">
           <CardTitle>Webhooks de saída</CardTitle>
-          <CardDescription>
-            Envio em JSON (método POST) para endereço HTTPS quando tarefas são criadas ou atualizadas. Consulte a
-            documentação interna sobre formato JSON, eventos e assinatura HMAC. Máximo de 5 endereços por equipe;
-            deduplicação por URL de destino. Não altera e-mails do Taskflow.
-          </CardDescription>
+          <div className="flex items-start justify-between gap-3">
+            <CardDescription>
+              Envia eventos de tarefas para até 5 destinos HTTPS por equipe.
+            </CardDescription>
+            <Link
+              href="/manual/zapier-make"
+              aria-label="Abrir documentação de integração com Zapier e Make"
+              title="Documentação Zapier e Make"
+              className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-slate-300 text-slate-600 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+            >
+              <BookOpen className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-3 text-sm text-slate-600 dark:text-slate-300">
           <div className="flex flex-wrap items-center gap-2">
-            <Button asChild variant="outline" size="sm" className="rounded-lg">
-              <Link href="/manual/zapier-make">Manual (Zapier / Make)</Link>
-            </Button>
             <Button
               type="button"
               variant="outline"

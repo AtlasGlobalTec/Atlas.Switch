@@ -32,10 +32,7 @@ import {
   ModuleSegmentedTabs,
   type ModuleSegmentedTabsItem,
 } from '@/components/ui/module-segmented-tabs';
-import {
-  ModuleWorkspaceHub,
-  moduleWorkspaceHubLinkClassName,
-} from '@/components/ui/module-workspace-hub';
+import { ModuleWorkspaceHub } from '@/components/ui/module-workspace-hub';
 
 type Plan = {
   id: number;
@@ -480,24 +477,11 @@ export default function ControlCenterPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Atlas Control Center"
-            description="Controle total de clientes, planos, faturamento e auditoria."
-            className="w-full"
-          />
-        </div>
-        <div className="flex flex-wrap items-start justify-end gap-2">
-          <Button
-            asChild
-            variant="outline"
-            className="w-full border-violet-200/80 bg-white/90 text-violet-800 shadow-sm backdrop-blur-sm hover:bg-violet-50 dark:border-violet-500/25 dark:bg-slate-900/70 dark:text-violet-200 dark:hover:bg-violet-950/40 sm:w-auto"
-          >
-            <Link href="/manual/control-center">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Atlas Control Center"
+        description="Clientes, planos, faturamento e auditoria."
+        className="w-full"
+      />
 
       <div className="mt-6">
         <ModuleWorkspaceHub
@@ -513,11 +497,6 @@ export default function ControlCenterPage() {
                 Planos cadastrados: edição em modal, suspensão no catálogo e exclusão com confirmação.
               </>
             )
-          }
-          links={
-            <Link href="/manual/control-center" className={moduleWorkspaceHubLinkClassName}>
-              Manual do Control Center
-            </Link>
           }
           tabs={
             <ModuleSegmentedTabs<ControlMainTab>

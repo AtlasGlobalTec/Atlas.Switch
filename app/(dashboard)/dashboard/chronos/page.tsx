@@ -706,20 +706,11 @@ export default function ChronosPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="Chronos"
-            description="Agenda inteligente com time-blocking, alertas e analytics de tempo."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/chronos">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="Chronos"
+        description="Agenda inteligente com time-blocking, alertas e analytics de tempo."
+        className="w-full"
+      />
 
       {chronosOAuthBanner ? (
         <div className="mt-4 rounded-xl border border-indigo-200/80 bg-indigo-50/90 px-4 py-3 text-sm text-indigo-950 dark:border-indigo-900/50 dark:bg-indigo-950/30 dark:text-indigo-100">

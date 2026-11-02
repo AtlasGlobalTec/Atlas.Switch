@@ -441,20 +441,11 @@ export default function BillTrakPage() {
   if (moduleBlocked) {
     return (
       <ModuleDashboardPageShell>
-        <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <div className="min-w-0">
-            <ModuleHeader
-              title="BillTrak"
-              description="O módulo está condicionado ao plano ativo do time. Quando habilitado, esta área libera lançamentos, transações e contas financeiras."
-              className="w-full"
-            />
-          </div>
-          <div className="flex items-start justify-end">
-            <Button asChild variant="outline" className="w-full sm:w-auto">
-              <Link href="/manual/billtrak">Manual</Link>
-            </Button>
-          </div>
-        </div>
+        <ModuleHeader
+          title="BillTrak"
+          description="O módulo está condicionado ao plano ativo do time."
+          className="w-full"
+        />
         <Card className="mt-6 border-amber-300 bg-amber-50/70 dark:border-amber-500/40 dark:bg-amber-500/10">
           <CardHeader>
             <CardTitle>Módulo indisponível para este plano</CardTitle>
@@ -479,20 +470,11 @@ export default function BillTrakPage() {
 
   return (
     <ModuleDashboardPageShell>
-      <div className="grid w-full gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="min-w-0">
-          <ModuleHeader
-            title="BillTrak"
-            description="Lançamentos (contas a pagar e receber), transações em contas e indicadores agregados por estado — alinhe ao Projectus quando associar custos a projetos."
-            className="w-full"
-          />
-        </div>
-        <div className="flex items-start justify-end">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/manual/billtrak">Manual</Link>
-          </Button>
-        </div>
-      </div>
+      <ModuleHeader
+        title="BillTrak"
+        description="Lançamentos, contas e indicadores financeiros do time."
+        className="w-full"
+      />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <BilltrakStatCard
